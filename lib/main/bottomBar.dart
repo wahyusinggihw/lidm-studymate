@@ -33,12 +33,12 @@ class _BottomBarState extends State<BottomBar> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: Container(
-        margin: EdgeInsets.only(top: 15),
-        padding: EdgeInsets.only(top: 3),
+        // margin: EdgeInsets.only(top: 15),
+        // padding: EdgeInsets.only(top: 3),
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
+              // color: Colors.grey.withOpacity(0.5),
+              // spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3))
         ]),
@@ -47,7 +47,7 @@ class _BottomBarState extends State<BottomBar> {
           onTap: onBarTapped,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          elevation: 5,
+          elevation: 10,
           selectedItemColor: Color(0xff023047),
           unselectedItemColor: Color(0xffCCCCCC),
           // backgroundColor: const Color(0xff20639B),
@@ -58,16 +58,16 @@ class _BottomBarState extends State<BottomBar> {
                 label: "Home",
                 backgroundColor: Colors.white),
             BottomNavigationBarItem(
-                icon: Icon(Icons.qr_code_scanner_rounded),
-                label: "Chat",
+                icon: Icon(Icons.grid_view_rounded),
+                label: "Quadrant",
                 backgroundColor: Colors.white),
             BottomNavigationBarItem(
                 icon: Icon(Icons.grade),
-                label: "Order",
+                label: "Achievement",
                 backgroundColor: Colors.white),
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
-                label: "User",
+                label: "Me",
                 backgroundColor: Colors.white),
           ],
         ),

@@ -37,7 +37,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
-                      color: Colors.orange,
+                      color: Color(0xffFFB703),
                     )),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
