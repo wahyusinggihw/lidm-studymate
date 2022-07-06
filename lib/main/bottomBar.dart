@@ -5,6 +5,8 @@ import 'package:study_mate/main/home.dart';
 import 'package:study_mate/main/me.dart';
 import 'package:study_mate/main/quad.dart';
 
+Color globalColor = Color(0xffFFB703);
+
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
 
