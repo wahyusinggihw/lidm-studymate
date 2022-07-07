@@ -44,6 +44,8 @@ class _RegisterState extends State<Register> {
                     // ),
                     child: TextFormField(
                       controller: _emailController,
+                      autofocus: true,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
@@ -62,6 +64,8 @@ class _RegisterState extends State<Register> {
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       controller: _passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
@@ -80,13 +84,15 @@ class _RegisterState extends State<Register> {
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       controller: _confirmPasswordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
                       decoration: InputDecoration(
                         filled: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         ),
                         fillColor: colorForm,
-                        labelText: 'Confirm Password',
+                        labelText: 'Confirm password',
                       ),
                     ),
                   ),
