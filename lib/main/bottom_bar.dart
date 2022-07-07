@@ -10,6 +10,7 @@ Color colorOrange1 = const Color(0xffFB8500);
 Color colorBlue = const Color(0xff8ECAE6);
 Color colorBlue1 = const Color(0xff219EBC);
 Color colorBlue2 = const Color(0xff023047);
+Color colorForm = const Color(0xffEDEDED);
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -22,10 +23,10 @@ class _BottomBarState extends State<BottomBar> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    Home(),
-    Quad(),
-    Achievement(),
-    Me(),
+    const Home(),
+    const Quad(),
+    const Achievement(),
+    const Me(),
   ];
 
   void onBarTapped(int index) {
@@ -41,7 +42,7 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: Container(
         // margin: EdgeInsets.only(top: 15),
         // padding: EdgeInsets.only(top: 3),
-        decoration: BoxDecoration(boxShadow: [
+        decoration: const BoxDecoration(boxShadow: [
           BoxShadow(
               // color: Colors.grey.withOpacity(0.5),
               // spreadRadius: 5,
@@ -54,10 +55,10 @@ class _BottomBarState extends State<BottomBar> {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           elevation: 10,
-          selectedItemColor: Color(0xff023047),
-          unselectedItemColor: Color(0xffCCCCCC),
+          selectedItemColor: const Color(0xff023047),
+          unselectedItemColor: const Color(0xffCCCCCC),
           // backgroundColor: const Color(0xff20639B),
-          backgroundColor: Color(0xff023047),
+          backgroundColor: const Color(0xff023047),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_filled),

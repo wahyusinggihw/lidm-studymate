@@ -34,10 +34,12 @@ dependencies:
 dev_dependencies:
   cloud_firestore: ^3.2.1
   firebase_core: ^1.19.1
+  flutter_custom_clippers: ^2.0.0
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
   google_fonts: ^3.0.1
+  material_design_icons_flutter: ^5.0.6595
   percent_indicator: ^3.0.1
   wave: ^0.2.2
 
