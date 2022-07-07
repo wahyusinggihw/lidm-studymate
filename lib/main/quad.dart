@@ -51,7 +51,7 @@ class QuadState extends State<Quad> {
                                         style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
-                                            color: globalColor)),
+                                            color: colorOrange)),
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional.center,
@@ -92,7 +92,7 @@ class QuadState extends State<Quad> {
                                         style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: globalColor)),
+                                            color: colorOrange)),
                                   ),
                                 ],
                               ),
@@ -122,7 +122,7 @@ class QuadState extends State<Quad> {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: globalColor)),
+                                          color: colorOrange)),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.center,
@@ -196,7 +196,7 @@ class QuadState extends State<Quad> {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: globalColor)),
+                                          color: colorOrange)),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.center,
@@ -262,7 +262,7 @@ class QuadState extends State<Quad> {
                                     style: GoogleFonts.poppins(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
-                                        color: globalColor)),
+                                        color: colorOrange)),
                               ),
                               Align(
                                 alignment: AlignmentDirectional.center,

@@ -5,7 +5,11 @@ import 'package:study_mate/main/home.dart';
 import 'package:study_mate/main/me.dart';
 import 'package:study_mate/main/quad.dart';
 
-Color globalColor = Color(0xffFFB703);
+Color colorOrange = const Color(0xffFFB703);
+Color colorOrange1 = const Color(0xffFB8500);
+Color colorBlue = const Color(0xff8ECAE6);
+Color colorBlue1 = const Color(0xff219EBC);
+Color colorBlue2 = const Color(0xff023047);
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
