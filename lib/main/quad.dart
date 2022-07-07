@@ -192,7 +192,7 @@ class QuadState extends State<Quad> {
                               children: [
                                 Align(
                                   alignment: AlignmentDirectional.topCenter,
-                                  child: Text("Do it Now!",
+                                  child: Text("Reduce it!",
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
