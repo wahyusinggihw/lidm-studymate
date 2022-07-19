@@ -11,6 +11,7 @@ Color colorBlue = const Color(0xff8ECAE6);
 Color colorBlue1 = const Color(0xff219EBC);
 Color colorBlue2 = const Color(0xff023047);
 Color colorForm = const Color(0xffEDEDED);
+Color colorWhite = const Color(0xffF6F6F6);
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);

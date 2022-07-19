@@ -195,8 +195,22 @@ class _RegisterState extends State<Register> {
                           password: _passwordController.text);
 
                       if (message!.contains('Success')) {
-                        print("success");
+                        // print("success");
+                        var snackBar = SnackBar(
+                          backgroundColor: Colors.blue,
+                          duration: Duration(seconds: 4),
+                          content: Text('Register berhasil, silahkan login'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        Navigator.pushNamed(context, '/login');
                       } else {
+                        var snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 4),
+                          content: Text(message.toString()),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        // Navigator.pushNamed(context, '/login');
                         print(message.toString());
                       }
                       // print(_firstNameController.text);

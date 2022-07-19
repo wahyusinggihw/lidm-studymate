@@ -92,7 +92,9 @@ class QuadState extends State<Quad> {
                             ),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/q1');
+                        },
                       ),
                     ),
                   ),

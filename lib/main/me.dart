@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/main/auth/auth_model.dart';
 import 'package:study_mate/main/bottom_bar.dart';
+import 'package:provider/provider.dart';
 
 class Me extends StatefulWidget {
   const Me({Key? key}) : super(key: key);
@@ -25,6 +27,8 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
     return Scaffold(
       body: Column(
         children: [
@@ -62,13 +66,18 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
-                            "Hanosi Wazri",
+                            // DICEK DAHULU APAKAH ADA USER LOGIN (NULL SAFETY)
+                            authService.getUser() == null
+                                ? ''
+                                : authService.getUser().displayName,
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           Text(
-                            "hanosi@undiksha.ac.id",
+                            authService.getUser() == null
+                                ? ''
+                                : authService.getUser().email,
                             style: TextStyle(fontSize: 11, color: Colors.white),
                           ),
                         ],
@@ -106,94 +115,113 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
             child: Container(
               width: 400,
               decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 202, 202, 202),
+                  // color: Color.fromARGB(255, 202, 202, 202),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Column(
                 children: [
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 20),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.payment_outlined,
-                              color: Colors.orange,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                'Donate',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ),
-                            )
-                          ],
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          // elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5))),
+                          primary: colorWhite,
                         ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 15, bottom: 15, left: 20),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.person,
+                                color: Colors.orange,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Profile',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onPressed: () {},
                       ),
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 20),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.person,
-                              color: Colors.orange,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                'Profile',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ),
-                            )
-                          ],
+                      // const Divider(),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          // elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0)),
+                          primary: colorWhite,
                         ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 15, bottom: 15, left: 20),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.settings,
+                                color: Colors.orange,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Pengaturan',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onPressed: () {},
                       ),
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 20),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.settings,
-                              color: Colors.orange,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                'Pengaturan',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
-                              ),
-                            )
-                          ],
+
+                      // const Divider(),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(5),
+                                  bottomRight: Radius.circular(5))),
+                          primary: colorWhite,
                         ),
-                      ),
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 20),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.exit_to_app_rounded,
-                              color: Colors.red,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                'Keluar',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.black),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 15, bottom: 15, left: 20),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.exit_to_app_rounded,
+                                color: Colors.red,
                               ),
-                            )
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Text(
+                                  'Keluar',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
+                        onPressed: () {
+                          authService.logOut();
+                          var snackBar = const SnackBar(
+                            backgroundColor: Colors.blue,
+                            duration: Duration(seconds: 4),
+                            content: Text('Logout berhasil'),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          Navigator.pushNamed(context, '/login');
+                        },
                       ),
                     ],
                   )

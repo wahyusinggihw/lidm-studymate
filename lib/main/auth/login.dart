@@ -1,10 +1,10 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:study_mate/main/appbar.dart';
+import 'package:study_mate/main/auth/auth_model.dart';
 import 'package:study_mate/main/bottom_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,6 +20,8 @@ class _LoginState extends State<Login> {
     TextEditingController _passwordController = TextEditingController();
 
     final _formKey = GlobalKey<FormState>();
+
+    final authService = Provider.of<AuthService>(context);
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -108,7 +110,32 @@ class _LoginState extends State<Login> {
                       fontSize: 15,
                       fontWeight: FontWeight.w900),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  var message = await authService.signIn(
+                      email: _emailController.text,
+                      password: _passwordController.text);
+                  if (message!.contains("Success")) {
+                    var snackBar = SnackBar(
+                      backgroundColor: Colors.blue,
+                      duration: Duration(seconds: 4),
+                      content: Text(
+                        authService.getUser() == null
+                            ? ""
+                            : "Login sebagai " +
+                                authService.getUser().displayName.toString(),
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.pushNamed(context, '/home');
+                  } else {
+                    var snackBar = SnackBar(
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 4),
+                      content: Text(message.toString()),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
               ),
             ),
           ),
