@@ -8,12 +8,13 @@ class QuadModel {
   final CollectionReference quads =
       FirebaseFirestore.instance.collection('quads');
 
+  late String currentQuad;
   // DateTime dateTime = DateTime.now();
   // var dateTime = FieldValue.serverTimestamp();
 
-  Future<String?> addQ1({required String task}) async {
+  Future<String?> addQuad({required String task, quad}) async {
     try {
-      quads.doc(_auth.currentUser!.uid).collection('q1').doc(task).set({
+      quads.doc(_auth.currentUser!.uid).collection(quad).doc(task).set({
         'task': task,
         'created_at': FieldValue.serverTimestamp(),
       });
@@ -21,5 +22,22 @@ class QuadModel {
       print(e.message);
     }
     return null;
+  }
+
+  Future<String?> deleteQuad({required String task, quad}) async {
+    try {
+      quads.doc(_auth.currentUser!.uid).collection(quad).doc(task).delete();
+    } on FirebaseException catch (e) {
+      print(e.message);
+    }
+    return null;
+  }
+
+  String get getCurrentQuad {
+    return currentQuad;
+  }
+
+  set setQuad(String quad) {
+    currentQuad = quad;
   }
 }

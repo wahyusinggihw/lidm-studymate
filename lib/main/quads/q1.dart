@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:study_mate/main/appbar.dart';
@@ -257,7 +259,12 @@ class Q1State extends State<Q1> {
                                         color: Colors.black,
                                         splashRadius: 20,
                                         iconSize: 20,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          // print(quadModel.getCurrentQuad);
+                                          quadModel.deleteQuad(
+                                              quad: quadModel.getCurrentQuad,
+                                              task: documentSnapshot['task']);
+                                        },
                                         icon: Icon(
                                           Icons.close,
                                           color: Colors.red,
@@ -327,7 +334,8 @@ class Q1State extends State<Q1> {
                                       if (_formKey.currentState!.validate() &&
                                           formEmpty == false) {
                                         // print("kekirim");
-                                        quadModel.addQ1(
+                                        quadModel.addQuad(
+                                            quad: quadModel.currentQuad,
                                             task: _q1TextController.text);
                                         _q1TextController.clear();
                                       } else if (snackBarTrigger == 3) {

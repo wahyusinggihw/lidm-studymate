@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:study_mate/main/appbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_mate/main/bottom_bar.dart';
+import 'quads/quads_model.dart';
+import 'package:provider/provider.dart';
 
 class Quad extends StatefulWidget {
   const Quad({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class Quad extends StatefulWidget {
 class QuadState extends State<Quad> {
   @override
   Widget build(BuildContext context) {
+    final quadModel = Provider.of<QuadModel>(context);
+
     return Scaffold(
       appBar: const PreferredSize(
           child: CustomAppBarQuad(), preferredSize: Size.fromHeight(167)),
@@ -93,6 +97,7 @@ class QuadState extends State<Quad> {
                           ),
                         ),
                         onTap: () {
+                          quadModel.setQuad = 'q1';
                           Navigator.pushNamed(context, '/q1');
                         },
                       ),
