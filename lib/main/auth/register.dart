@@ -197,6 +197,9 @@ class _RegisterState extends State<Register> {
                       if (message!.contains('Success')) {
                         // print("success");
                         var snackBar = SnackBar(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.blue,
                           duration: Duration(seconds: 4),
                           content: Text('Register berhasil, silahkan login'),
@@ -205,6 +208,9 @@ class _RegisterState extends State<Register> {
                         Navigator.pushNamed(context, '/login');
                       } else {
                         var snackBar = SnackBar(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.red,
                           duration: Duration(seconds: 4),
                           content: Text(message.toString()),

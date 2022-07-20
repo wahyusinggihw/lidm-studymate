@@ -17,11 +17,10 @@ class Q2State extends State<Q2> {
   bool addTask = true;
   var snackBarTrigger = 0;
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
-    TextEditingController _q1TextController = TextEditingController();
+    TextEditingController _q2TextController = TextEditingController();
 
     final quadModel = Provider.of<QuadModel>(context);
 
@@ -206,6 +205,7 @@ class Q2State extends State<Q2> {
             SizedBox(height: 20),
             Expanded(
               child: ListView(
+                physics: BouncingScrollPhysics(),
                 children: [
                   StreamBuilder(
                     stream: _q2Stream,
@@ -300,7 +300,7 @@ class Q2State extends State<Q2> {
                               child: TextFormField(
                                 style: GoogleFonts.poppins(
                                     fontSize: 10, fontWeight: FontWeight.w600),
-                                controller: _q1TextController,
+                                controller: _q2TextController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
                                       left: 8, top: 15, bottom: 15),
@@ -322,8 +322,8 @@ class Q2State extends State<Q2> {
                                         // print("kekirim");
                                         quadModel.addQuad(
                                             quad: quadModel.currentQuad,
-                                            task: _q1TextController.text);
-                                        _q1TextController.clear();
+                                            task: _q2TextController.text);
+                                        _q2TextController.clear();
                                       } else if (snackBarTrigger == 3) {
                                         var snackBar = SnackBar(
                                           shape: RoundedRectangleBorder(

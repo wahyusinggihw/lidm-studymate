@@ -17,10 +17,9 @@ class Q1State extends State<Q1> {
   bool addTask = true;
   var snackBarTrigger = 0;
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
     TextEditingController _q1TextController = TextEditingController();
 
     final quadModel = Provider.of<QuadModel>(context);
@@ -65,7 +64,7 @@ class Q1State extends State<Q1> {
                       children: [
                         Align(
                           alignment: AlignmentDirectional.topCenter,
-                          child: Text("Do it Now!",
+                          child: Text("Schedule it!",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -191,7 +190,7 @@ class Q1State extends State<Q1> {
                         ),
                         Align(
                           alignment: AlignmentDirectional.bottomCenter,
-                          child: Text("Q1",
+                          child: Text("Q2",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -206,6 +205,7 @@ class Q1State extends State<Q1> {
             SizedBox(height: 20),
             Expanded(
               child: ListView(
+                physics: BouncingScrollPhysics(),
                 children: [
                   StreamBuilder(
                     stream: _q1Stream,

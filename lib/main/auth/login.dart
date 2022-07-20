@@ -116,6 +116,9 @@ class _LoginState extends State<Login> {
                       password: _passwordController.text);
                   if (message!.contains("Success")) {
                     var snackBar = SnackBar(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.blue,
                       duration: Duration(seconds: 4),
                       content: Text(
@@ -129,6 +132,9 @@ class _LoginState extends State<Login> {
                     Navigator.pushNamed(context, '/home');
                   } else {
                     var snackBar = SnackBar(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.red,
                       duration: Duration(seconds: 4),
                       content: Text(message.toString()),

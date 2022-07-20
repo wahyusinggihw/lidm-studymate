@@ -214,10 +214,13 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                         ),
                         onPressed: () {
                           authService.logOut();
-                          var snackBar = const SnackBar(
+                          var snackBar = SnackBar(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            behavior: SnackBarBehavior.floating,
                             backgroundColor: Colors.blue,
                             duration: Duration(seconds: 4),
-                            content: Text('Logout berhasil'),
+                            content: Text("Berhasil logout."),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           Navigator.pushNamed(context, '/login');
