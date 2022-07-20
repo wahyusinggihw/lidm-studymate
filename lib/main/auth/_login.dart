@@ -14,12 +14,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
-
-    final _formKey = GlobalKey<FormState>();
 
     final authService = Provider.of<AuthService>(context);
 

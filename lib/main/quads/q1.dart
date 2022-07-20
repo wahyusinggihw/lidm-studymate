@@ -205,7 +205,7 @@ class Q1State extends State<Q1> {
             SizedBox(height: 20),
             Expanded(
               child: ListView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 children: [
                   StreamBuilder(
                     stream: _q1Stream,

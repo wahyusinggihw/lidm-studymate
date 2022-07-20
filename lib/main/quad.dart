@@ -147,7 +147,7 @@ class QuadState extends State<Quad> {
                                           ],
                                         );
                                       } else {
-                                        return Text("no data");
+                                        return Text("loading..");
                                       }
                                     },
                                   ),
@@ -275,7 +275,7 @@ class QuadState extends State<Quad> {
                                         ],
                                       );
                                     } else {
-                                      return Text("no data");
+                                      return Text("loading..");
                                     }
                                   },
                                 ),
@@ -435,7 +435,7 @@ class QuadState extends State<Quad> {
                                         ],
                                       );
                                     } else {
-                                      return Text("no data");
+                                      return Text("loading..");
                                     }
                                   },
                                 ),
@@ -584,7 +584,7 @@ class QuadState extends State<Quad> {
                                       ],
                                     );
                                   } else {
-                                    return Text("no data");
+                                    return Text("loading..");
                                   }
                                 },
                               ),
