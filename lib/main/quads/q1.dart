@@ -118,15 +118,14 @@ class Q1State extends State<Q1> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: ListView(
                 children: [
-                  Expanded(
-                      child: StreamBuilder(
+                  StreamBuilder(
                     stream: _q1Stream,
                     builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
@@ -166,19 +165,28 @@ class Q1State extends State<Q1> {
                                   ),
                                 ),
                               );
-                            } else if (snapshot.data!.docs.isNotEmpty &&
-                                addTask == true) {
-                              return Text("add data");
                             } else {
-                              return Text("tidak ada");
+                              return Center(
+                                child: Text('loading...',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600)),
+                              );
                             }
                           },
                         );
                       } else {
-                        return Text("Tidakada");
+                        return Center(
+                          child: Text('loading...',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600)),
+                        );
                       }
                     },
-                  )),
+                  ),
                   Form(
                     key: _formKey,
                     child: Container(
