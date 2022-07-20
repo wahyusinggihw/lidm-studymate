@@ -20,6 +20,8 @@ class QuadState extends State<Quad> {
 
     Stream<QuerySnapshot> _streamPreviewQ1 = quadModel.streamPreview('q1');
     Stream<QuerySnapshot> _streamPreviewQ2 = quadModel.streamPreview('q2');
+    Stream<QuerySnapshot> _streamPreviewQ3 = quadModel.streamPreview('q3');
+    Stream<QuerySnapshot> _streamPreviewQ4 = quadModel.streamPreview('q4');
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -316,6 +318,7 @@ class QuadState extends State<Quad> {
                       ),
                       onTap: () {
                         quadModel.setQuad = 'q2';
+                        Navigator.pushNamed(context, '/q2');
                       },
                     ),
                   ),
@@ -352,30 +355,114 @@ class QuadState extends State<Quad> {
                               ),
                               Align(
                                 alignment: AlignmentDirectional.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Chatting",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                    Text("Instagram story",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                    Text("Telepon tidak penting",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                        )),
-                                  ],
+                                child: StreamBuilder(
+                                  stream: _streamPreviewQ3,
+                                  builder: (context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ListView.builder(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                snapshot.data!.docs.length,
+                                            itemBuilder: (context, index) {
+                                              final DocumentSnapshot
+                                                  documentSnapshot =
+                                                  snapshot.data!.docs[index];
+
+                                              if (snapshot
+                                                  .data!.docs.isNotEmpty) {
+                                                return Text(
+                                                    "\u2022 " +
+                                                        documentSnapshot[
+                                                            'task'],
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ));
+                                              } else {
+                                                return Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        "Deadline tugas hari ini qweqweqwe",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        )),
+                                                    Text(
+                                                        "Deadline tugas hari ini qweqweqwe",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        )),
+                                                    Text(
+                                                        "Deadline tugas hari ini qweqweqwe",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        )),
+                                                  ],
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    } else {
+                                      return Text("no data");
+                                    }
+                                  },
                                 ),
+                                // Column(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   crossAxisAlignment: CrossAxisAlignment.start,
+                                //   children: [
+                                //     Text("Chatting",
+                                //         overflow: TextOverflow.ellipsis,
+                                //         style: GoogleFonts.poppins(
+                                //           fontSize: 10,
+                                //           fontWeight: FontWeight.w600,
+                                //         )),
+                                //     Text("Instagram story",
+                                //         overflow: TextOverflow.ellipsis,
+                                //         style: GoogleFonts.poppins(
+                                //           fontSize: 10,
+                                //           fontWeight: FontWeight.w600,
+                                //         )),
+                                //     Text("Telepon tidak penting",
+                                //         overflow: TextOverflow.ellipsis,
+                                //         style: GoogleFonts.poppins(
+                                //           fontSize: 10,
+                                //           fontWeight: FontWeight.w600,
+                                //         )),
+                                //   ],
+                                // ),
                               ),
                               Align(
                                 alignment: AlignmentDirectional.bottomCenter,
@@ -389,7 +476,10 @@ class QuadState extends State<Quad> {
                           ),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        quadModel.setQuad = 'q3';
+                        Navigator.pushNamed(context, '/q3');
+                      },
                     ),
                   ),
                 ),
@@ -417,30 +507,111 @@ class QuadState extends State<Quad> {
                             ),
                             Align(
                               alignment: AlignmentDirectional.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Gosip",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w600,
-                                      )),
-                                  Text("Nongkrong",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w600,
-                                      )),
-                                  Text("Scrolling social media",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w600,
-                                      )),
-                                ],
+                              child: StreamBuilder(
+                                stream: _streamPreviewQ4,
+                                builder: (context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ListView.builder(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemCount: snapshot.data!.docs.length,
+                                          itemBuilder: (context, index) {
+                                            final DocumentSnapshot
+                                                documentSnapshot =
+                                                snapshot.data!.docs[index];
+
+                                            if (snapshot
+                                                .data!.docs.isNotEmpty) {
+                                              return Text(
+                                                  "\u2022 " +
+                                                      documentSnapshot['task'],
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w600,
+                                                  ));
+                                            } else {
+                                              return Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      "Deadline tugas hari ini qweqweqwe",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      )),
+                                                  Text(
+                                                      "Deadline tugas hari ini qweqweqwe",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      )),
+                                                  Text(
+                                                      "Deadline tugas hari ini qweqweqwe",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      )),
+                                                ],
+                                              );
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  } else {
+                                    return Text("no data");
+                                  }
+                                },
                               ),
+                              // Column(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   crossAxisAlignment: CrossAxisAlignment.start,
+                              //   children: [
+                              //     Text("Gosip",
+                              //         overflow: TextOverflow.ellipsis,
+                              //         style: GoogleFonts.poppins(
+                              //           fontSize: 10,
+                              //           fontWeight: FontWeight.w600,
+                              //         )),
+                              //     Text("Nongkrong",
+                              //         overflow: TextOverflow.ellipsis,
+                              //         style: GoogleFonts.poppins(
+                              //           fontSize: 10,
+                              //           fontWeight: FontWeight.w600,
+                              //         )),
+                              //     Text("Scrolling social media",
+                              //         overflow: TextOverflow.ellipsis,
+                              //         style: GoogleFonts.poppins(
+                              //           fontSize: 10,
+                              //           fontWeight: FontWeight.w600,
+                              //         )),
+                              //   ],
+                              // ),
                             ),
                             Align(
                               alignment: AlignmentDirectional.bottomCenter,
@@ -454,7 +625,10 @@ class QuadState extends State<Quad> {
                         ),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      quadModel.setQuad = 'q4';
+                      Navigator.pushNamed(context, '/q4');
+                    },
                   ),
                 ),
               ],
