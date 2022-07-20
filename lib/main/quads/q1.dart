@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:study_mate/main/bottom_bar.dart';
 import 'package:study_mate/main/quads/quads_model.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Q1 extends StatefulWidget {
   const Q1({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class Q1 extends StatefulWidget {
 
 class Q1State extends State<Q1> {
   bool formEmpty = false;
+  bool addTask = true;
   var snackBarTrigger = 0;
 
   @override
@@ -24,6 +27,12 @@ class Q1State extends State<Q1> {
     TextEditingController _q1TextController = TextEditingController();
 
     final quadModel = Provider.of<QuadModel>(context);
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final Stream<QuerySnapshot> _q1Stream = FirebaseFirestore.instance
+        .collection('quads')
+        .doc(_auth.currentUser!.uid)
+        .collection('q1')
+        .snapshots();
 
     return Scaffold(
       appBar: AppBar(
@@ -107,27 +116,84 @@ class Q1State extends State<Q1> {
                 ),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Container(
-                    margin: const EdgeInsets.all(5),
-                    child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, right: 15.0, top: 50, bottom: 0),
-                        // padding: EdgeInsets.symmetric(
-                        //   horizontal: 15,
-                        // ),
-                        child: Material(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                          color: Colors.white,
-                          elevation: 3,
-                          child: SizedBox(
-                            width: 233,
-                            height: 40,
+            SizedBox(height: 20),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: StreamBuilder(
+                    stream: _q1Stream,
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            final DocumentSnapshot documentSnapshot =
+                                snapshot.data!.docs[index];
+
+                            if (snapshot.data!.docs.isNotEmpty) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 4, 20, 4),
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(15),
+                                  elevation: 2,
+                                  // Navigator.pushNamed(context, '/detail-barber');
+                                  child: ListTile(
+                                    dense: true,
+                                    tileColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    title: Text(
+                                      documentSnapshot['task'],
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    trailing: IconButton(
+                                        color: Colors.black,
+                                        splashRadius: 20,
+                                        iconSize: 20,
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.close,
+                                          color: Colors.red,
+                                        )),
+                                  ),
+                                ),
+                              );
+                            } else if (snapshot.data!.docs.isNotEmpty &&
+                                addTask == true) {
+                              return Text("add data");
+                            } else {
+                              return Text("tidak ada");
+                            }
+                          },
+                        );
+                      } else {
+                        return Text("Tidakada");
+                      }
+                    },
+                  )),
+                  Form(
+                    key: _formKey,
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, right: 15, top: 16, bottom: 80),
+                          // padding: EdgeInsets.symmetric(
+                          //   horizontal: 15,
+                          // ),
+                          child: Material(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15)),
+                            color: Colors.white,
+                            elevation: 3,
                             child: Padding(
                               padding: const EdgeInsets.all(2),
                               child: TextFormField(
@@ -136,7 +202,7 @@ class Q1State extends State<Q1> {
                                 controller: _q1TextController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
-                                      left: 8, top: 4, bottom: 2),
+                                      left: 8, top: 15, bottom: 15),
                                   border: InputBorder.none,
                                   hintText: 'add.. ',
                                   hintStyle: GoogleFonts.poppins(
@@ -152,12 +218,16 @@ class Q1State extends State<Q1> {
                                     onPressed: () {
                                       if (_formKey.currentState!.validate() &&
                                           formEmpty == false) {
-                                        print("kekirim");
-                                        // quadModel.addQ1(
-                                        //     task: _q1TextController.text);
+                                        // print("kekirim");
+                                        quadModel.addQ1(
+                                            task: _q1TextController.text);
                                         _q1TextController.clear();
                                       } else if (snackBarTrigger == 3) {
                                         var snackBar = SnackBar(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          behavior: SnackBarBehavior.floating,
                                           backgroundColor: Colors.red,
                                           duration: Duration(seconds: 4),
                                           content:
@@ -190,11 +260,11 @@ class Q1State extends State<Q1> {
                                 },
                               ),
                             ),
-                          ),
-                        )),
+                          )),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),
