@@ -1,13 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:study_mate/main/appbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_mate/main/bottom_bar.dart';
 import 'package:study_mate/main/quads/quads_model.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Q1 extends StatefulWidget {
@@ -29,21 +24,11 @@ class Q1State extends State<Q1> {
     TextEditingController _q1TextController = TextEditingController();
 
     final quadModel = Provider.of<QuadModel>(context);
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final Stream<QuerySnapshot> _q1Stream = FirebaseFirestore.instance
-        .collection('quads')
-        .doc(_auth.currentUser!.uid)
-        .collection('q1')
-        .orderBy('created_at', descending: false)
-        .snapshots();
 
-    final Stream<QuerySnapshot> _q1StreamPreview = FirebaseFirestore.instance
-        .collection('quads')
-        .doc(_auth.currentUser!.uid)
-        .collection('q1')
-        .orderBy('created_at', descending: false)
-        .limit(3)
-        .snapshots();
+    //Stream list menampilkan semua docs dalam listtile
+    Stream<QuerySnapshot> _q1Stream = quadModel.streamList('q1');
+    // Stream preview di limit 3 docs saja
+    Stream<QuerySnapshot> _q1StreamPreview = quadModel.streamPreview('q1');
 
     return Scaffold(
       appBar: AppBar(
@@ -256,19 +241,20 @@ class Q1State extends State<Q1> {
                                           fontWeight: FontWeight.w600),
                                     ),
                                     trailing: IconButton(
-                                        color: Colors.black,
-                                        splashRadius: 20,
-                                        iconSize: 20,
-                                        onPressed: () {
-                                          // print(quadModel.getCurrentQuad);
-                                          quadModel.deleteQuad(
-                                              quad: quadModel.getCurrentQuad,
-                                              task: documentSnapshot['task']);
-                                        },
-                                        icon: Icon(
-                                          Icons.close,
-                                          color: Colors.red,
-                                        )),
+                                      color: Colors.black,
+                                      splashRadius: 20,
+                                      iconSize: 20,
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: Colors.red,
+                                      ),
+                                      onPressed: () {
+                                        // print(quadModel.getCurrentQuad);
+                                        quadModel.deleteQuad(
+                                            quad: quadModel.getCurrentQuad,
+                                            task: documentSnapshot['task']);
+                                      },
+                                    ),
                                   ),
                                 ),
                               );

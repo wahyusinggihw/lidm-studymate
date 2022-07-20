@@ -40,4 +40,27 @@ class QuadModel {
   set setQuad(String quad) {
     currentQuad = quad;
   }
+
+  Stream<QuerySnapshot> streamPreview(String quad) {
+    var _streamPreview = FirebaseFirestore.instance
+        .collection('quads')
+        .doc(_auth.currentUser!.uid)
+        .collection(quad)
+        .orderBy('created_at', descending: false)
+        .limit(3)
+        .snapshots();
+
+    return _streamPreview;
+  }
+
+  Stream<QuerySnapshot> streamList(String quad) {
+    var _streamList = FirebaseFirestore.instance
+        .collection('quads')
+        .doc(_auth.currentUser!.uid)
+        .collection(quad)
+        .orderBy('created_at', descending: false)
+        .snapshots();
+
+    return _streamList;
+  }
 }
