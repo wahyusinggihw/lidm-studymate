@@ -223,7 +223,9 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                             content: Text("Berhasil logout."),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          Navigator.pushNamed(context, '/login');
+                          // Navigator.pushNamed(context, '/login');
+                          Navigator.pushNamedAndRemoveUntil(context, '/login',
+                              (Route<dynamic> route) => false);
                         },
                       ),
                     ],
