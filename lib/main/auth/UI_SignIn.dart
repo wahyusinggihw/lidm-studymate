@@ -2,9 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_mate/main/auth/loading.dart';
-import '../../../Widget/widget_TextField.dart';
-import 'UI_SignUp.dart';
-import 'UI_ForgetPassword.dart';
+import 'package:study_mate/widgets/widget_TextField.dart';
+import 'package:study_mate/main/auth/UI_SignUp.dart';
 import 'package:provider/provider.dart';
 import 'auth_model.dart';
 // import '../Menu/UI_Home.dart';

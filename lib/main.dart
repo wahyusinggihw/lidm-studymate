@@ -3,6 +3,7 @@ import 'package:study_mate/main/auth/auth_model.dart';
 import 'package:study_mate/main/quads/quads_model.dart';
 import 'package:study_mate/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:study_mate/main/splash.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Study Mate',
-        home: Routes(),
+        home: Splash(),
       ),
     );
   }
