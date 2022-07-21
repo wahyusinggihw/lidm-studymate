@@ -64,7 +64,7 @@ class Q1State extends State<Q1> {
                       children: [
                         Align(
                           alignment: AlignmentDirectional.topCenter,
-                          child: Text("Schedule it!",
+                          child: Text("Do it Now!",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -190,7 +190,7 @@ class Q1State extends State<Q1> {
                         ),
                         Align(
                           alignment: AlignmentDirectional.bottomCenter,
-                          child: Text("Q2",
+                          child: Text("Q1",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,

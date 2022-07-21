@@ -25,7 +25,8 @@ class AuthService {
   }) async {
     try {
       await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
+          .createUserWithEmailAndPassword(
+              email: email.trim(), password: password)
           .then((cred) {
         cred.user!.updateDisplayName(firstName + ' ' + lastName);
         _db.collection('users').doc(cred.user?.uid).set({
@@ -61,7 +62,8 @@ class AuthService {
     password,
   }) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth.signInWithEmailAndPassword(
+          email: email.trim(), password: password);
       return 'Success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

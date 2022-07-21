@@ -7,18 +7,19 @@ class TextFieldsWidget extends StatelessWidget {
   final bool obscureText;
   final IconData prefixIconData;
   final TextEditingController controller;
+  final TextInputType? keyboardType;
   final FormFieldValidator<String>? validator;
   // final IconData suffixIconData;
   // final Function onChanged;
 
   const TextFieldsWidget({
     Key? key,
-    // required this.formKey,
     required this.hintText,
     required this.obscureText,
     required this.prefixIconData,
     required this.controller,
     required this.validator,
+    this.keyboardType,
     // required this.suffixIconData,
     // required this.onChanged,
   }) : super(key: key);
@@ -27,6 +28,7 @@ class TextFieldsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       // key: formKey,
+      keyboardType: keyboardType,
       obscureText: obscureText,
       style: TextStyle(
         fontSize: 12,
@@ -35,7 +37,7 @@ class TextFieldsWidget extends StatelessWidget {
       cursorColor: Colors.blue,
       controller: controller,
       decoration: InputDecoration(
-        hintText: hintText,
+        // hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 12,
           color: Colors.blueAccent,
