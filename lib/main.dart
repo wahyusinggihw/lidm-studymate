@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:study_mate/main/home.dart';
+import 'package:study_mate/main/List/UI_ToDoList.dart';
+import 'package:study_mate/main/List/UI_WeeklyPlanner.dart';
+import 'package:study_mate/main/auth/auth_model.dart';
+import 'package:study_mate/main/quads/quads_model.dart';
+import 'package:study_mate/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -11,21 +22,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo 1',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+        Provider<QuadModel>(
+          create: (_) => QuadModel(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Study Mate',
+        home: WeeklyPlanner(),
       ),
-      home: const Home(),
     );
   }
 }
