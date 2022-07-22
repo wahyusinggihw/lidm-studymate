@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "541599146726",
+    "firebase_url": "https://data-74304-default-rtdb.firebaseio.com",
+    "project_id": "data-74304",
+    "storage_bucket": "data-74304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541599146726:android:50c6e092207608a2d41127",
+        "android_client_info": {
+          "package_name": "com.example.study_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541599146726-fj6cqoskat4bef19g0hpes8m07e2smk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZtKzVZPGOYamNCmwb1E_1wAJ7Datwg_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541599146726-fj6cqoskat4bef19g0hpes8m07e2smk2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
