@@ -45,11 +45,11 @@ class _RoutesState extends State<Routes> {
           // '/': (context) => const Splash(),
           '/register': (context) => const SignUp(),
           '/login': (context) => const SignIn(),
-          '/home': (context) => BottomBar(),
-          '/q1': (context) => Q1(),
-          '/q2': (context) => Q2(),
-          '/q3': (context) => Q3(),
-          '/q4': (context) => Q4(),
+          '/home': (context) => const BottomBar(),
+          '/q1': (context) => const Q1(),
+          '/q2': (context) => const Q2(),
+          '/q3': (context) => const Q3(),
+          '/q4': (context) => const Q4(),
         });
   }
 }

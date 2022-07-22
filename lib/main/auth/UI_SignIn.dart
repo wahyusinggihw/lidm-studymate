@@ -161,8 +161,11 @@ class _SignInState extends State<SignIn> {
                                             );
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(snackBar);
-                                            Navigator.pushNamed(
-                                                context, '/home');
+                                            Navigator.pushNamedAndRemoveUntil(
+                                                context,
+                                                '/home',
+                                                (Route<dynamic> route) =>
+                                                    false);
                                           } else {
                                             setState(() => loading = false);
                                             print(message.toString());
