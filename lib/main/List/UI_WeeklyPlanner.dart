@@ -36,6 +36,8 @@ class _WeeklyPlannerState extends State<WeeklyPlanner> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
                 child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -43,6 +45,7 @@ class _WeeklyPlannerState extends State<WeeklyPlanner> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                             color: kondisi ? Colors.green : Colors.white,
                           ),
                           child: ListTile(
@@ -124,6 +127,8 @@ class _WeeklyPlannerState extends State<WeeklyPlanner> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 elevation: 5,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -131,6 +136,7 @@ class _WeeklyPlannerState extends State<WeeklyPlanner> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           color: checkBox ? Colors.green : Colors.white,
                         ),
                         child: ListTile(
@@ -147,29 +153,31 @@ class _WeeklyPlannerState extends State<WeeklyPlanner> {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
+                          trailing: checkBox
+                              ? null
+                              : Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                      onPressed: () {
+                                        print('Delete');
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.green,
+                                      ),
+                                      onPressed: () {
+                                        print('Edit');
+                                      },
+                                    ),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  print('Delete');
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.edit,
-                                  color: Colors.green,
-                                ),
-                                onPressed: () {
-                                  print('Edit');
-                                },
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ],

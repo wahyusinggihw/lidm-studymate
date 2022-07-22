@@ -52,13 +52,18 @@ class _ToDoListState extends State<ToDoList> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 elevation: 5,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: Column(
                     children: [
                       Container(
-                        color: checkBox ? Colors.grey : Colors.white,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: checkBox ? Colors.grey : Colors.white,
+                        ),
                         child: ListTile(
                           title: Text(
                             'Belajar adalah suatu proses atau upaya yang dilakukan setiap individu untuk mendapatkan perubahan tingkah laku, baik dalam bentuk pengetahuan, keterampilan, sikap dan nilai positif sebagai suatu pengalaman dari berbagai materi yang telah dipelajari.',
@@ -85,7 +90,8 @@ class _ToDoListState extends State<ToDoList> {
                           trailing: checkBox
                               ? null
                               : IconButton(
-                                  icon: Icon(Icons.delete),
+                                  icon: Icon(Icons.close),
+                                  color: Colors.red,
                                   onPressed: () {
                                     print('delete');
                                   }),
