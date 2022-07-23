@@ -12,15 +12,28 @@ class Timers extends StatefulWidget {
 
 class _TimersState extends State<Timers> {
   double percent = 0;
-  static int TimeInMinute = 25;
-  int TimeInSecond = TimeInMinute * 60;
+  int TimeInMinute = 1;
+  int TimeInSecond = 1 * 60;
   double StopW = 0;
   late Timer timer;
   bool button = false;
   bool _isBreak = false;
 
   _startTime() {
-    TimeInMinute = _isBreak ? 5 : 25;
+    if (_isBreak == true) {
+      setState(() {
+        TimeInSecond = 5 * 60;
+        TimeInMinute = 5;
+        int Time = TimeInMinute * 60;
+        _isBreak = false;
+      });
+    } else {
+      setState(() {
+        TimeInSecond = 1 * 60;
+        TimeInMinute = 1;
+        _isBreak = true;
+      });
+    }
     int Time = TimeInMinute * 60;
     double SecPercent = (Time / 100);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -50,17 +63,13 @@ class _TimersState extends State<Timers> {
   }
 
   _Display() {
-    if (TimeInSecond != 0) {
-      TimeInSecond--;
-      return '${(TimeInSecond / 60).toInt().toString().padLeft(2, '0')}:${(TimeInSecond % 60).toInt().toString().padLeft(2, '0')}';
-    }
+    TimeInSecond--;
+    return '${(TimeInSecond / 60).toInt().toString().padLeft(2, '0')}:${(TimeInSecond % 60).toInt().toString().padLeft(2, '0')}';
   }
 
   _DisplayTimer() {
-    if (StopW >= 0) {
-      StopW++;
-      return '${(StopW / 3600).toInt().toString().padLeft(2, '0')}:${(StopW / 60).toInt().toString().padLeft(2, '0')}:${(StopW).toInt().toString().padLeft(2, '0')}';
-    }
+    StopW++;
+    return '${(StopW / 3600).toInt().toString().padLeft(2, '0')}:${(StopW / 60).toInt().toString().padLeft(2, '0')}:${(StopW % 60).toInt().toString().padLeft(2, '0')}';
   }
 
   @override
