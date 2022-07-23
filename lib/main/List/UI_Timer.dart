@@ -1,7 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:intl/date_time_patterns.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class Timers extends StatefulWidget {
@@ -18,9 +17,10 @@ class _TimersState extends State<Timers> {
   double StopW = 0;
   late Timer timer;
   bool button = false;
+  bool _isBreak = false;
 
   _startTime() {
-    TimeInMinute = 25;
+    TimeInMinute = _isBreak ? 5 : 25;
     int Time = TimeInMinute * 60;
     double SecPercent = (Time / 100);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -32,12 +32,15 @@ class _TimersState extends State<Timers> {
           }
           if (Time % SecPercent == 0) {
             if (percent < 1) {
-              percent += 0.005;
+              percent += 0.01;
             } else {
               percent = 1;
             }
           }
         } else {
+          setState(() {
+            _isBreak = true;
+          });
           percent = 0;
           TimeInMinute = 25;
           timer.cancel();
@@ -114,6 +117,8 @@ class _TimersState extends State<Timers> {
                   child: Padding(
                     padding: EdgeInsets.only(top: 30, left: 20, right: 20),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Row(
@@ -173,25 +178,68 @@ class _TimersState extends State<Timers> {
                         ),
                         Text(
                           _DisplayTimer(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        RaisedButton(
-                          color: Colors.blue,
-                          onPressed: () {
-                            button
-                                ? setState(() {
-                                    timer.cancel();
-                                    button = false;
-                                  })
-                                : setState(() {
-                                    _startTime();
-                                    button = true;
-                                  });
-                          },
-                          child: Text(
-                            'Start',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20)),
+                                    color: Colors.orange,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      button
+                                          ? setState(() {
+                                              timer.cancel();
+                                              button = false;
+                                            })
+                                          : setState(() {
+                                              _startTime();
+                                              button = true;
+                                            });
+                                    },
+                                    icon: Icon(
+                                      button
+                                          ? Icons.pause
+                                          : Icons.play_arrow_rounded,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20)),
+                                    color: Colors.red,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        timer.cancel();
+                                        percent = 0;
+                                        TimeInSecond = TimeInMinute * 60;
+                                        StopW = 0;
+                                        button = false;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.stop,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
