@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/main/List/UI_Timer.dart';
 import 'package:study_mate/main/List/UI_ToDoList.dart';
 import 'package:study_mate/main/List/UI_WeeklyPlanner.dart';
 import 'package:study_mate/main/auth/auth_model.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Study Mate',
-        home: WeeklyPlanner(),
+        home: Timers(),
       ),
     );
   }

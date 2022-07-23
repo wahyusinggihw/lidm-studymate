@@ -44,6 +44,9 @@ dependencies:
   provider: ^6.0.3
   wave: ^0.2.2
   custom_check_box: ^0.0.4
+  neon_circular_timer: ^0.0.7
+  ndialog: ^4.1.1+1
+  circular_countdown_timer: ^0.2.2
 
 dev_dependencies:
   flutter_test:
