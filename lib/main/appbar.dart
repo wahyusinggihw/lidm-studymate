@@ -72,6 +72,40 @@ class _CustomAppBarChart2State extends State<CustomAppBarChart2> {
   }
 }
 
+class AppBarToDoList extends StatefulWidget {
+  const AppBarToDoList({Key? key}) : super(key: key);
+
+  @override
+  State<AppBarToDoList> createState() => _AppBarToDoListState();
+}
+
+class _AppBarToDoListState extends State<AppBarToDoList> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            height: 287,
+            decoration: const BoxDecoration(
+                color: Color(0xffFFB703),
+                borderRadius:
+                    BorderRadius.only(bottomLeft: Radius.circular(82))),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, top: 20),
+            child: Text("To Do List",
+                style: GoogleFonts.poppins(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white)),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class CustomAppBarQuad extends StatelessWidget {
   const CustomAppBarQuad({Key? key}) : super(key: key);
 

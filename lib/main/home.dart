@@ -4,7 +4,8 @@ import 'package:study_mate/main/appbar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
+// mencoba push clone baru
+// mencoba push clone baru 2
   @override
   State<Home> createState() => _HomeState();
 }
@@ -71,7 +72,9 @@ class _HomeState extends State<Home> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(7)),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/list');
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               // color: const Color(0xff219EBC),
@@ -99,7 +102,9 @@ class _HomeState extends State<Home> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(7)),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/weekplanner');
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               // color: const Color(0xff219EBC),
@@ -127,7 +132,9 @@ class _HomeState extends State<Home> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(7)),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/timer');
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               // color: const Color(0xff219EBC),

@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  custom_check_box: ^0.0.4
   fl_chart: ^0.55.0
   flutter:
     sdk: flutter

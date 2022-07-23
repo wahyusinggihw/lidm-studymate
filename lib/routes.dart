@@ -6,6 +6,9 @@ import 'package:study_mate/main/auth/UI_SignUp.dart';
 // import 'package:study_mate/main/auth/login.dart';
 // import 'package:study_mate/main/auth/register.dart';
 import 'package:study_mate/main/bottom_bar.dart';
+import 'package:study_mate/main/list/UI_ToDoList.dart';
+import 'package:study_mate/main/list/UI_Timer.dart';
+import 'package:study_mate/main/list/UI_WeeklyPlanner.dart';
 import 'package:study_mate/main/quads/q1.dart';
 import 'package:study_mate/main/quads/q2.dart';
 import 'package:study_mate/main/quads/q3.dart';
@@ -50,6 +53,9 @@ class _RoutesState extends State<Routes> {
           '/q2': (context) => const Q2(),
           '/q3': (context) => const Q3(),
           '/q4': (context) => const Q4(),
+          '/list': (context) => ToDoList(),
+          '/weekplanner': (context) => WeeklyPlanner(),
+          '/timer': (context) => Timers(),
         });
   }
 }
