@@ -12,50 +12,32 @@ class Timers extends StatefulWidget {
 
 class _TimersState extends State<Timers> {
   double percent = 0;
-  int TimeInMinute = 1;
-  int TimeInSecond = 1 * 60;
-  double StopW = 0;
+  static int timeInMinute = 1;
+  int timeInSecond = timeInMinute * 60 + 1;
+  double stop = 0;
   late Timer timer;
   bool button = false;
-  bool _isBreak = false;
 
   _startTime() {
-    if (_isBreak == true) {
-      setState(() {
-        TimeInSecond = 5 * 60;
-        TimeInMinute = 5;
-        int Time = TimeInMinute * 60;
-        _isBreak = false;
-      });
-    } else {
-      setState(() {
-        TimeInSecond = 1 * 60;
-        TimeInMinute = 1;
-        _isBreak = true;
-      });
-    }
-    int Time = TimeInMinute * 60;
-    double SecPercent = (Time / 100);
+    int timers = timeInMinute * 60 + 1;
+    double secPercent = (timers / 100);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        if (Time > 0) {
-          Time--;
-          if (Time % 60 == 0) {
-            TimeInMinute--;
+        if (timers > 0) {
+          timers--;
+          if (timers % 60 == 0) {
+            timeInMinute--;
           }
-          if (Time % SecPercent == 0) {
-            if (percent < 1) {
+          if (timers % secPercent == 0) {
+            if (percent == 0) {
               percent += 0.01;
             } else {
               percent = 1;
             }
           }
         } else {
-          setState(() {
-            _isBreak = true;
-          });
           percent = 0;
-          TimeInMinute = 25;
+          timeInMinute = 5;
           timer.cancel();
         }
       });
@@ -63,13 +45,13 @@ class _TimersState extends State<Timers> {
   }
 
   _Display() {
-    TimeInSecond--;
-    return '${(TimeInSecond / 60).toInt().toString().padLeft(2, '0')}:${(TimeInSecond % 60).toInt().toString().padLeft(2, '0')}';
+    timeInSecond--;
+    return '${(timeInSecond / 60).toInt().toString().padLeft(2, '0')}:${(timeInSecond % 60).toInt().toString().padLeft(2, '0')}';
   }
 
   _DisplayTimer() {
-    StopW++;
-    return '${(StopW / 3600).toInt().toString().padLeft(2, '0')}:${(StopW / 60).toInt().toString().padLeft(2, '0')}:${(StopW % 60).toInt().toString().padLeft(2, '0')}';
+    stop++;
+    return '${(stop / 3600).toInt().toString().padLeft(2, '0')}:${(stop / 60).toInt().toString().padLeft(2, '0')}:${(stop % 60 - 1).toInt().toString().padLeft(2, '0')}';
   }
 
   @override
@@ -237,8 +219,8 @@ class _TimersState extends State<Timers> {
                                       setState(() {
                                         timer.cancel();
                                         percent = 0;
-                                        TimeInSecond = TimeInMinute * 60;
-                                        StopW = 0;
+                                        timeInSecond = timeInMinute * 60;
+                                        stop = 0;
                                         button = false;
                                       });
                                     },
